@@ -15,9 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv-safe/config");
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const cors_1 = __importDefault(require("cors"));
 const Deck_1 = __importDefault(require("./models/Deck"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+}));
 app.get('/', (_, res) => {
     res.send("hello");
 });

@@ -1,12 +1,20 @@
 import "dotenv-safe/config";
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 
 import Deck from "./models/Deck";
 
 const app = express();
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  })
+);
 
 app.get('/', (_, res: Response) => {
   res.send("hello");
